@@ -3,110 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portofolio pribadi Siti Nazwa, menampilkan riwayat pendidikan, keahlian coding, dan proyek kreatif.">
-    
-    <meta property="og:title" content="Portofolio: Siti Nazwa">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/3498db/ffffff?text=Portofolio+Siti+Nazwa">
-    <meta property="og:type" content="website">
+    <title>Happy Birthday Seng ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f6;
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
 
-    <title>Portofolio Pribadi | Siti Nazwa Rahmawati</title>
+        /* Nama Berjalan Kelap-Kelip */
+        .marquee-container {
+            width: 100%;
+            background: linear-gradient(to right, #ff75a0, #ffb6c1);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    <link rel="stylesheet" href="style.css">
+        .running-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite, blink 0.8s step-end infinite;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.7; }
+        }
+
+        /* Kartu Ucapan Utama */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 90%;
+            width: 600px; /* Lebar kartu utama */
+            border: 5px dashed #ffb6c1;
+            margin-top: 60px;
+            position: relative;
+            z-index: 50;
+            animation: popIn 0.8s ease-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .profile-name {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+
+        h2 { color: #ff69b4; font-size: 1.8rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; color: #666; line-height: 1.6; }
+
+        .btn-surprise {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s transform ease, 0.3s background ease;
+            box-shadow: 0 7px 20px rgba(255, 71, 87, 0.4);
+            margin-top: 30px;
+        }
+
+        .btn-surprise:hover {
+            transform: scale(1.05) rotate(-2deg);
+            background: #e03a4b;
+        }
+
+        /* Overlay untuk Kejutan */
+        .surprise-overlay {
+            display: none; /* Sembunyikan secara default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .surprise-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .surprise-content {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 700px;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .surprise-content img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 4px solid #ffb6c1;
+        }
+
+        .surprise-content h3 {
+            color: #ff69b4;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .surprise-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .surprise-content ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .surprise-content ul li::before {
+            content: '⭐'; /* Icon bintang */
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-size: 1.3rem;
+            top: -2px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ff4757;
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div style="text-align: center; margin-bottom: 10px;">
-            <h1>Siti Nazwa Rahmawati</h1>
+    <div class="marquee-container">
+        <div class="running-text">
+            🎉 HAPPY BIRTHDAY SENGGGGG 🎉 SEMOGA PANJANG UMUR DAN BAHAGIA SELALU! 🎉 LOVE YOUUUUU 🎉
         </div>
-        <nav aria-label="Navigasi Utama">
-            <ul>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href="#pendidikan">Pendidikan</a></li>
-                <li><a href="#Pengalaman">Pengalaman</a></li>
-                <li><a href="#karya">Karya</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </nav>
-    </header>
+    </div>
 
-    <main>
+    <div class="card">
+        <h2>Happy Birthday Senggggg</h2>
+        <h1 class="profile-name">Gina Renia</h1>
+        <p>
+            Hari ini adalah harimu! Semoga semua mimpimu menjadi kenyataan, 
+            selalu dikelilingi kebahagiaan, dan tetap menjadi orang baik yang luar biasa. 🎂✨
+        </p>
+        
+        <button class="btn-surprise" onclick="showSurprise()">KLIK UNTUK KEJUTAN SPESIAL! 🎉</button>
+    </div>
 
-        <section id="tentang">
-            <h2>Siti Nazwa Rahmawati</h2>
-            <img src="img/siti.jpg" 
-                 alt="Foto close-up Siti Nazwa tersenyum dengan latar belakang merah" 
-                 class="profile-img">
+    <div class="surprise-overlay" id="surpriseOverlay">
+        <div class="surprise-content">
+            <span class="close-btn" onclick="closeSurprise()">&times;</span>
+            <h3>Untuk Sengg</h3>
+            <img src="GINA.jpeg" alt="Foto Gina Renia"> 
             
-            <p>
-               Saya adalah seorang Mahasiswa Universitas Mayasari Bakti Kota Tasikmalaya semester 1 Program Studi Teknik Informatika.
-               Saya juga bekerja sebagai tenaga pendidik di SPS TAAM Miqdarul Falah.
-            </p>
-        </section>
-
-        <aside tabindex="0" aria-label="Kutipan Inspiratif">
-            <h3>💡 Quote of the Day</h3>
-            <blockquote>
-                "Satu-satunya cara untuk melakukan pekerjaan hebat adalah dengan mencintai apa yang Anda lakukan."
-            </blockquote>
-        </aside>
-
-        <section id="pendidikan">
-            <h2>Riwayat Pendidikan</h2>
-            <table>
-                <caption>Ringkasan Pendidikan Formal</caption>
-                <thead>
-                    <tr>
-                        <th>Tingkat</th>
-                        <th>Nama Institusi</th>
-                        <th>Tahun</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>SD</td>
-                        <td>SDN 2 Setiamulya</td>
-                        <td>2013 - 2019</td>
-                    </tr>
-                    <tr>
-                        <td>SMP</td>
-                        <td>SMP Islam Nurussalam</td>
-                        <td>2019-2022</td>
-                    </tr>
-                    <tr>
-                        <td>MA</td>
-                        <td>MA Assa'adah</td>
-                        <td>2022-2025</td>
-                    </tr>
-                    <tr>
-                        <td>Universitas</td>
-                        <td>Universitas Mayasari Bakti</td>
-                        <td>2025-Sekarang</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2">Status Saat Ini</th>
-                        <td>Mahasiswa Aktif</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
-        <section id="Pengalaman">
-            <h2>Pengalaman</h2>
-            
-            <h3>Technical Skills</h3>
             <ul>
-                <li>HTML5 & CSS3</li>
-                <li>Python (Data Science Basic)</li>
-                <li>Statistika Dasar</li>
+                <li>⭐ Semoga panjang umur, sehat selalu, dan semakin sukses di segala hal.</li>
+                <li>⭐ Semoga setiap langkahmu dipenuhi kebahagiaan dan keberkahan.</li>
+                <li>⭐ Semoga semua impian dan cita-citamu tercapai satu per satu.</li>
+                <li>⭐ Semoga selalu dikelilingi oleh orang-orang yang mencintaimu.</li>
+                <li>⭐ Tetaplah menjadi yang ceria, inspiratif, dan penuh cinta.</li>
+                <li>⭐ Happy Birthday, we love you! ❤️</li>
             </ul>
+        </div>
+    </div>
 
-            <h3>Kamus Keahlian (Soft Skills)</h3>
-            <dl>
-                <dt><strong>Design Thinking</strong></dt>
-                <dd>Kemampuan memahami pengguna, menantang asumsi, dan mendefinisikan ulang masalah.</dd>
-                
-                <dt><strong>Logika Matematika</strong></dt>
-                <dd>Kemampuan analisis proposisi dan penyelesaian masalah terstruktur.</dd>
+    <script>
+        function showSurprise() {
+            const overlay = document.getElementById('surpriseOverlay');
+            overlay.classList.add('show');
+            // Opsional: sembunyikan kartu utama saat overlay muncul jika diinginkan
+            // document.querySelector('.card').style.display = 'none';
+        }
+
+        function closeSurprise() {
+            const overlay = document.getElementById('surpriseOverlay');
+            overlay.classList.remove('show');
+            // Opsional: tampilkan kembali kartu utama
+            // document.querySelector('.card').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
