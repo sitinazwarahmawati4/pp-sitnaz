@@ -3,211 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special for Teh Dila ✨</title>
+    <title>Special Journey for Dela ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #ff85a1;
-            --bg-color: #fff5f7;
+            --primary: #ff8fa3;
+            --soft-blue: #a2d2ff;
+            --cream: #fff5f7;
+            --text-color: #555;
         }
 
-        body {
+        body, html {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background: var(--bg-color);
-            overflow: hidden;
-            transition: background 0.8s ease;
+            background-color: var(--cream);
+            color: var(--text-color);
+            overflow: hidden; /* Mencegah scroll manual agar transisi terkontrol */
         }
 
-        /* --- Header Running Text --- */
-        .marquee {
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 0;
-            font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
+        /* --- Dekorasi Melayang --- */
+        .decoration {
             position: fixed;
-            top: 0; width: 100%; z-index: 1000;
+            pointer-events: none;
+            z-index: 999;
+            animation: float linear forwards;
         }
 
-        .marquee span {
-            display: inline-block;
-            animation: scroll 15s linear infinite;
+        @keyframes float {
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* --- Kontainer Halaman --- */
+        /* --- Pengaturan Halaman --- */
         .page {
             height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: absolute;
+            top: 0; left: 0;
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            opacity: 0;
+            visibility: hidden;
             padding: 20px;
             box-sizing: border-box;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
-            transition: all 0.6s ease-in-out;
-            opacity: 0;
-            display: none;
         }
 
-        #main-page { opacity: 1; display: flex; }
+        .active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-        /* --- Tombol --- */
-        .btn-special {
-            background: #ff477e;
+        /* --- Elemen Visual --- */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 143, 163, 0.2);
+            max-width: 500px;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .btn-next {
+            background: var(--primary);
             color: white;
             border: none;
             padding: 15px 35px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
-            margin: 10px;
+            margin-top: 25px;
             transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 143, 163, 0.4);
         }
 
-        .btn-special:hover { transform: scale(1.05); background: #e03a4b; }
-
-        /* --- Desain Surat --- */
-        .letter-box {
-            background: white;
-            max-width: 500px;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border-left: 8px solid var(--primary-color);
-            margin-bottom: 20px;
+        .btn-next:hover {
+            transform: scale(1.05) translateY(-3px);
+            background: #ff758c;
         }
 
-        .letter-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.6rem;
-            line-height: 1.4;
-            color: #444;
+        /* --- Progress Bar --- */
+        .progress-container {
+            position: fixed;
+            bottom: 30px;
+            width: 200px;
+            height: 10px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        /* --- Tampilan Foto --- */
-        .photo-frame {
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transform: rotate(-3deg);
-            max-width: 300px;
+        #progress-bar {
+            width: 25%;
+            height: 100%;
+            background: var(--primary);
             transition: 0.5s;
         }
 
-        .photo-frame:hover { transform: rotate(0deg) scale(1.05); }
-
-        .photo-frame img {
-            width: 100%;
-            height: auto;
+        /* --- Foto Frame --- */
+        .photo-container {
+            width: 250px;
+            height: 320px;
+            background: white;
+            padding: 10px;
             border-radius: 10px;
-            display: block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            margin-bottom: 20px;
         }
 
-        .photo-caption {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            margin-top: 15px;
-            color: #ff477e;
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
         }
 
-        /* --- Sakura --- */
-        .sakura {
-            position: fixed;
-            top: -10%;
-            color: #ffb6c1;
-            pointer-events: none;
-            z-index: 999;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(360deg); }
+        .quote-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <div class="marquee">
-        <span>✨ Special Page for Teh Dila ✨ Love Youuuu✨ Kamu Hebat! ✨ </span>
+    <div class="progress-container">
+        <div id="progress-bar"></div>
     </div>
 
-    <div id="main-page" class="page">
-        <h1 style="font-family: 'Dancing Script', cursive; font-size: 4rem; color: #ff85a1; margin-bottom: 0;">Halo, Teh Dila! 🌸</h1>
-        <p style="font-size: 1.1rem; color: #666;">Ada sesuatu yang spesial untuk TehDil hari ini.</p>
-        <button class="btn-special" onclick="changePage('main-page', 'secret-page')">Buka Pesan Rahasia ✉️</button>
+    <div id="p1" class="page active">
+        <h1>Halo, Dela! ✨</h1>
+        <p>Tarik napas dalam-dalam... <br> Hari ini kita akan belajar tentang sebuah rahasia kecil.</p>
+        <P>WAJIB NURUT UNTUK KALI INI IKUTI PERINTAHNYA</P>
+        <button class="btn-next" onclick="goToPage(2, '50%')">Mulai Perjalanan ➔</button>
     </div>
 
-    <div id="secret-page" class="page">
-        <div class="letter-box">
-            <div class="letter-text">
-                "Teh Dila cantik,<br><br>
-                Terimakasih yaa sudah selalu ada dan juga yang selalu dengerin cerita random dari siti nazwa yang gajelas ini hihi,,walaupun untuk saat ini kita jadi kurang interaksi dan cerita cerita<br><br>
-                Semangat terus yawww love youuu ✨"
-            </div>
+    <div id="p2" class="page">
+        <div class="card">
+            <h3>Nikmati Setiap Detiknya</h3>
+            <p class="quote-text">
+                "Dela, hidup itu bukan tentang seberapa cepat kamu sampai ke tujuan, 
+                tapi tentang pemandangan yang kamu lihat selama perjalanan."
+            </p>
+            <p>Setiap proses, sepahit apapun, adalah bagian dari cerita hebatmu nanti.</p>
         </div>
-        <button class="btn-special" onclick="changePage('secret-page', 'photo-page')">Lihat Foto ✨</button>
+        <button class="btn-next" onclick="goToPage(3, '75%')">Lanjut Lagi ✨</button>
     </div>
 
-    <div id="photo-page" class="page">
-        <h2 style="color: #ff477e; margin-bottom: 20px;">FOTO KITA HIHI ✨</h2>
-        <div class="photo-frame">
-            <img src="KIW.jpeg" alt="Foto Teh Dila">
-            <div class="photo-caption">LUCUUUUUUUUUU 🌸</div>
+    <div id="p3" class="page">
+        <div class="photo-container">
+            <img src="DELAA.jpeg" alt="Foto Dela">
         </div>
-        <div style="margin-top: 20px;">
-            <button class="btn-special" style="background:#666;" onclick="changePage('photo-page', 'main-page')">Ulangi Dari Awal</button>
+        <h3>Lihatlah Dirimu..</h3>
+        <p style="max-width: 400px;">Kamu sudah melangkah sejauh ini. Jangan lupa untuk bangga pada dirimu sendiri atas setiap perjuangan kecil yang tidak orang lain lihat.</p>
+        <button class="btn-next" onclick="goToPage(4, '100%')">Pesan Terakhir ❤️</button>
+    </div>
+
+    <div id="p4" class="page">
+        <h1 style="font-size: 3rem;">Keep Shining, Dela!</h1>
+        <div class="card" style="background: var(--soft-blue); color: white;">
+            <p class="quote-text" style="color: white;">
+                "Bunga tidak mekar dalam semalam. Begitu juga kamu. 
+                Nikmati proses mekar-mu, karena itu yang membuatmu indah."</p>
+            <P>
+                "SEMANGAT BESOK SENIN SEKOLAH DAN MENJADI KETUA OSIS AWAL DARI PROSES YANG LUAR BIASAA"
+            </p>
         </div>
+        <button class="btn-next" style="background: #666;" onclick="goToPage(1, '25%')">Ulangi Kehangatan</button>
     </div>
 
     <script>
-        // Fungsi Perpindahan Halaman Otomatis
-        function changePage(currentId, nextId) {
-            const current = document.getElementById(currentId);
-            const next = document.getElementById(nextId);
+        function goToPage(pageNum, progressWidth) {
+            // Sembunyikan semua halaman
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => {
+                p.classList.remove('active');
+            });
 
-            current.style.opacity = "0";
+            // Tampilkan halaman yang dituju
             setTimeout(() => {
-                current.style.display = "none";
-                next.style.display = "flex";
-                setTimeout(() => {
-                    next.style.opacity = "1";
-                }, 50);
-            }, 600);
-            
-            // Ubah background khusus untuk halaman foto
-            if(nextId === 'photo-page') {
-                document.body.style.background = "#ffd1dc";
-            } else {
-                document.body.style.background = "#fff5f7";
-            }
+                document.getElementById('p' + pageNum).classList.add('active');
+                document.getElementById('progress-bar').style.width = progressWidth;
+            }, 100);
+
+            // Ubah warna background per halaman
+            const colors = ['#fff5f7', '#f0f4ff', '#fffcf0', '#eef9f0'];
+            document.body.style.backgroundColor = colors[pageNum - 1];
         }
 
-        // Efek Sakura
+        // Efek Dekorasi Otomatis (Bintang dan Bunga)
         setInterval(() => {
-            const sakura = document.createElement('div');
-            sakura.className = 'sakura';
-            sakura.innerHTML = '🌸';
-            sakura.style.left = Math.random() * 100 + "vw";
-            sakura.style.fontSize = (Math.random() * 20 + 10) + "px";
-            sakura.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(sakura);
-            setTimeout(() => { sakura.remove(); }, 5000);
-        }, 400);
+            const icons = ['🌸', '✨', '⭐', '🎈'];
+            const dec = document.createElement('div');
+            dec.className = 'decoration';
+            dec.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            dec.style.left = Math.random() * 100 + "vw";
+            dec.style.top = "-5vh";
+            dec.style.fontSize = (Math.random() * 20 + 10) + "px";
+            dec.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(dec);
+            setTimeout(() => { dec.remove(); }, 6000);
+        }, 500);
     </script>
 </body>
 </html>
